@@ -21,7 +21,7 @@ public:
 	TTree *t = NULL;
 	double mtVlepJECnew=0;
 	int nentries;
-	TH1D* h = new TH1D("h","h",100,0,200);
+	TH1D* h = new TH1D("h","h",125,-50,200);
 };
 
 n30_infile::n30_infile(TFile *file)

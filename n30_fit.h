@@ -11,12 +11,13 @@ class n30_fit
 
 
 		//variables
-		TH1D *hh = new TH1D("hh","hh",100,0,150);
+//		TH1D *hh = new TH1D("hh","hh",100,0,150);
 };
 
 n30_fit::n30_fit(TH1D *h)
 {
 	h->Fit("gaus");
-	h->Draw();	
+	cout<<"mean value of histo gram"<<h->GetMean()<<endl;
+	//h->Draw();	
 
 }
