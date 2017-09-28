@@ -97,8 +97,8 @@ vector<TH1D*> n31_infile::gethisto()
 		t->GetEntry(d_ii);
         if(photonsieie != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && photonet>22 && fabs(photoneta)<1.44 && jet1pt>20 && jet2pt>20 && fabs(jet1eta)<4.7 && fabs(jet2eta)<4.7 ) h->Fill(photonsieie);
     	if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30) h1->Fill(photonsieie_f);
-		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && photonet_f>22 && fabs(photoneta_f)<1.44) h2->Fill(photonsieie_f);
-		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && photonet_f>22 && fabs(photoneta_f)<1.44 && jet1pt_f>20 && jet2pt_f>20 && fabs(jet1eta_f)<4.7 && fabs(jet2eta_f)<4.7 ) h3->Fill(photonsieie_f);		
+		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && fabs(photoneta_f)<1.44) h2->Fill(photonsieie_f);
+		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && photonet_f>22 && fabs(photoneta_f)<1.44 ) h3->Fill(photonsieie_f);		
 	}
  	vh.push_back(h);
 	vh.push_back(h1);	

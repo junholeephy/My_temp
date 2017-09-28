@@ -9,8 +9,8 @@
 
 void n31_sieie()
 {
-	TFile *inputf1 = new TFile("/Volumes/ExHard/Run2VBSWGamma_plotting/PKUTree/outtree_170926/outWJets-2.root","READ");
-	TFile *inputf2 = new TFile("/Volumes/ExHard/Run2VBSWGamma_plotting/PKUTree/outtree_170926/outSingleMuon_Run2016C.root","READ");
+	TFile *inputf1 = new TFile("/Volumes/ExHard/Run2VBSWGamma_quick_plotting/making_root_small/outtree_170926_lep_loose/outVBSWA_signal_s.root","READ");
+	TFile *inputf2 = new TFile("/Volumes/ExHard/Run2VBSWGamma_quick_plotting/making_root_small/outtree_170926_lep_loose/outSingleMuon_Run2016C_s.root","READ");
 	vector<TH1D*> vh;
 	vector<Int_t> num;
 	char buffer[256];	
@@ -30,12 +30,12 @@ void n31_sieie()
 		cv->cd(i+1);
 		vh.at(i)->Draw();
 	}
-	cv->SaveAs("n31_WJets_photonsieie.png");
+	cv->SaveAs("n31_VBSWA_photonsieie.png");
 	cv->Update();
 	infile1->Clear();
 	vh.clear();
 	num.clear();
-
+//	cv->Clear();
 
 
 	n31_infile *infile2 = new n31_infile(inputf2);
