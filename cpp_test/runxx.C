@@ -15,7 +15,7 @@ void runxx()
 	{
 		getline(infile, buffer);
 		infilename = buffer;
-		if(infilename.Contains(".root")==0) {k=-2, continue;}
+		if(infilename.Contains(".root")==0) {k=-2; continue;}
 		TString outname = "out"+infilename;
 
 		cout<<outname<<endl;
@@ -28,7 +28,7 @@ void runxx()
 		cout<<outname<<endl;
 		m1.Loop();
 		m1.endJob();
-		m1.Printing();
+//		m1.Printing();
 	}
 }
 
