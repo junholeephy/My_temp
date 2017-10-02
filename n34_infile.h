@@ -62,10 +62,12 @@ public:
 
 	int nentries;
 	vector<TH1D*> vh;
-	TH1D* h = new TH1D("tight_pho","tight_pho",100,0.0,0.035);
-	TH1D* h1 = new TH1D("tight_pho_with_pta_etaa","tight_pho_with_pta_etaa",100,0.0,0.08);
-	TH1D* h2 = new TH1D("PLJ_pta22","PLJ_pta22",100,0.0,0.08);
-	TH1D *h3 = new TH1D("PTJ_pta22_jet","PTJ_pta22_jet",100,0.0,0.08);
+	TH1D* h = new TH1D("tight_pho_etaa","tight_pho_etaa",100,0.0,0.02);
+	TH1D* h1 = new TH1D("tight_pho_with_pta_etaa","tight_pho_with_pta_etaa",100,0.0,0.02);
+	TH1D* h2 = new TH1D("tight_pho_with_pta_etaa_jet","tight_pho_with_pta_etaa_jet",100,0.0,0.02);
+	TH1D* h3 = new TH1D("PLJ_etaa","PLJ_etaa",100,0.0,0.02);
+	TH1D *h4 = new TH1D("PTJ_pta_etaa","PTJ_pta_etaa",100,0.0,0.02);
+	TH1D *h5 = new TH1D("PTJ_pta_etaa_jet","PTJ_pta_etaa_jet",100,0.0,0.02);
 	vector<Int_t> integral;
 };
 
@@ -181,7 +183,7 @@ vector<TH1D*> n34_infile::gethisto()
 			if(i==1) { pet = photon_pt[ip]; ipp = ip;}
 			else ;
 			
-			if(is_medi && i!=1 && sqrt((photon_eta[ipp]-etalep1)*(photon_eta[ipp]-etalep1)+(photon_phi[ipp]-philep1)*(photon_phi[ipp]-philep1) ) > 0.7  )
+			if(is_medi && i!=1 && sqrt((photon_eta[ipp]-etalep1)*(photon_eta[ipp]-etalep1)+(photon_phi[ipp]-philep1)*(photon_phi[ipp]-philep1) ) > 0.7 && photon_eta[ipp]<1.44 )
 			{	
 				if(photon_pt[ip]>pet) ipp = ip;
 			}
@@ -190,16 +192,27 @@ vector<TH1D*> n34_infile::gethisto()
 		if(ipp>=0 ) 
 		{
 			h->Fill(photon_sieie[ipp]);
-			if(photon_pt[ipp] >22 && photon_eta[ipp]<1.44) h1->Fill(photon_sieie[ipp]);
+			if(photon_pt[ipp] >22 && photon_eta[ipp]<1.44) 
+			{
+				h1->Fill(photon_sieie[ipp]);
+				if( (ipp == iphoton) && fabs(jet1eta)<4.7 && fabs(jet2eta)<4.7 && jet1pt>40 && jet2pt>30 )
+				{
+					h2->Fill(photon_sieie[ipp]);
+				}
+				else ;
+			}
+			else;
 		}
+
 		//if(photonsieie != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && photonet>22 && fabs(photoneta)<1.44 && jet1pt>20 && jet2pt>20 && fabs(jet1eta)<4.7 && fabs(jet2eta)<4.7 ) h->Fill(photonsieie);
 
 
 
-		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && fabs(photoneta_f)<1.44 && photonet_f>22 ) h2->Fill(photonsieie_f);
+		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && fabs(photoneta_f)<1.44) h3->Fill(photonsieie_f);
 
+		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && fabs(photoneta_f)<1.44 && photonet_f>22 ) h4->Fill(photonsieie_f);
 
-		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && fabs(photoneta_f)<1.44 && photonet_f>22 && jet1pt>40 && jet2pt>30 && fabs(jet1eta)<4.7 && fabs(jet2eta)<4.7 ) h3->Fill(photonsieie_f);	
+		if(photonsieie_f != -10 && lep ==13 && nlooseeles==0 && nloosemus<2 && HLT_Mu3 ==1 && ptlep1>25 && fabs(etalep1)<2.1 && MET_et>20 && mtVlepJECnew>30 && fabs(photoneta_f)<1.44 && photonet_f>22 && jet1pt_f>40 && jet2pt_f>30 && fabs(jet1eta_f)<4.7 && fabs(jet2eta_f)<4.7 ) h5->Fill(photonsieie_f);	
 
 
 
@@ -208,10 +221,14 @@ vector<TH1D*> n34_infile::gethisto()
 	h1->SetXTitle("#sigmai#etai#eta");
 	h2->SetXTitle("#sigmai#etai#eta");
 	h3->SetXTitle("#sigmai#etai#eta");
+	h4->SetXTitle("#sigmai#etai#eta");
+	h5->SetXTitle("#sigmai#etai#eta");
  	vh.push_back(h);
-	vh.push_back(h1);	
-    vh.push_back(h2);
-	vh.push_back(h3);
+	vh.push_back(h1);
+	vh.push_back(h2);	
+    vh.push_back(h3);
+	vh.push_back(h4);
+	vh.push_back(h5);
 	return vh;
 }
 
@@ -232,6 +249,8 @@ void n34_infile::Clear()
 	h1->Clear();
 	h2->Clear();
 	h3->Clear();
+	h4->Clear();
+	h5->Clear();
 	vh.clear();	
 	integral.clear();
 
