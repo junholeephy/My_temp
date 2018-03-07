@@ -41,7 +41,7 @@ vector<TLeaf*> n4_leaf_reader::Read_leaf(TBranch *branch)
         vleaf.push_back(lf);
     }
     if(VName.size()==0) cout<<"        ** No sub **"<<endl;
-    cout<<"-------------------------------------------------------------"<<endl<<endl;
+    cout<<"-------------------------------------------------------------"<<endl;
     return vleaf;
 }
 

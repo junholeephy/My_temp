@@ -35,7 +35,7 @@ vector<TTree*> n2_root_tree_reader::Read_tree(string *str)
     string stemp = str->data();
     VName = Name->NameOfTree(&stemp);
 //    VName = Name->NameOfTree(&(str->data()));
-    cout<<"!!! Number of trees : "<<VName.size()<<endl;
+    cout<<endl<<"!!! Number of trees : "<<VName.size()<<endl;
     Vtree.clear(); 
     for(int i1=0; i1<VName.size(); i1++)
     {
