@@ -1,0 +1,169 @@
+// "root -l 1_run.C"    to execute
+
+#include "TChain.h"
+#include "TLorentzVector.h"
+#include "TSystem.h"
+#include "TROOT.h"     // Need this get "gSystem" work!!!!
+#include "TClonesArray.h"
+#include <vector>
+#include "TH1.h"
+
+void VBSWW_Madspin_decayed()
+{
+    TFile *fout = new TFile("output_madspin_VBSWW.root","RECREATE");
+    TTree *treeLL = new TTree("treeLL","treeLL");
+    TTree *treeTT = new TTree("treeTT","treeTT");
+    TTree *treeTL = new TTree("treeTL","treeTL");
+    TTree *treeTotal = new TTree("treeTotal","treeTotal");
+
+    TChain chainLL("LHEF");
+    TChain chainTT("LHEF");
+    TChain chainTL("LHEF");
+    TChain chainTotal("LHEF");
+    chainLL.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/LL/unweighted_events_decayed.root");
+    chainTT.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/TT/unweighted_events_decayed.root");
+    chainTL.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/TL/unweighted_events_decayed.root");     
+    chainTotal.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/total/unweighted_events_decayed.root");
+
+
+    ExRootTreeReader *treeReaderLL = new ExRootTreeReader(&chainLL);
+    ExRootTreeReader *treeReaderTT = new ExRootTreeReader(&chainTT);
+    ExRootTreeReader *treeReaderTL = new ExRootTreeReader(&chainTL);
+    ExRootTreeReader *treeReaderTotal = new ExRootTreeReader(&chainTotal);
+    Long64_t numberOfEntriesLL = treeReaderLL->GetEntries();
+    Long64_t numberOfEntriesTT = treeReaderTT->GetEntries();
+    Long64_t numberOfEntriesTL = treeReaderTL->GetEntries();
+    Long64_t numberOfEntriesTotal = treeReaderTotal->GetEntries();
+    cout<<"Total Number of Entry Events LL : "<<numberOfEntriesLL<<endl;
+    cout<<"Total Number of Entry Events TT : "<<numberOfEntriesTT<<endl;
+    cout<<"Total Number of Entry Events TL : "<<numberOfEntriesTL<<endl;
+    cout<<"Total Number of Entry Events Total : "<<numberOfEntriesTotal<<endl;
+
+    TClonesArray *branchEventLL = treeReaderLL->UseBranch("Event");
+    TClonesArray *branchParticleLL = treeReaderLL->UseBranch("Particle");
+    TClonesArray *branchEventTT = treeReaderTT->UseBranch("Event");
+    TClonesArray *branchParticleTT = treeReaderTT->UseBranch("Particle");
+    TClonesArray *branchEventTL = treeReaderTL->UseBranch("Event");
+    TClonesArray *branchParticleTL = treeReaderTL->UseBranch("Particle");
+    TClonesArray *branchEventTotal = treeReaderTotal->UseBranch("Event");
+    TClonesArray *branchParticleTotal = treeReaderTotal->UseBranch("Particle");
+
+    Double_t W1Pt, W1Eta, W1Phi, W1Spin = 0;
+    Double_t W2Pt, W2Eta, W2Phi, W2Spin = 0;
+    Double_t lep1Pt, lep1Eta, lep1Phi, lep1Spin = 0;
+    Double_t Nu1Pt, Nu1Eta, Nu1Phi, Nu1Spin = 0;
+    Double_t lep2Pt, lep2Eta, lep2Phi, lep2Spin = 0;
+    Double_t Nu2Pt, Nu2Eta, Nu2Phi, Nu2Spin = 0;
+
+    treeLL->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeLL->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeLL->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeLL->Branch("W1Spin",&W1Spin,"W1Spin/D");  
+    treeLL->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeLL->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeLL->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeLL->Branch("W2Spin",&W2Spin,"W2Spin/D");  
+    treeLL->Branch("lep1Pt",&lep1Pt,"lep1Pt/D");  treeLL->Branch("lep1Eta",&lep1Eta,"lep1Eta/D");  treeLL->Branch("lep1Phi",&lep1Phi,"lep1Phi/D");  treeLL->Branch("lep1Spin",&lep1Spin,"lep1Spin/D");  
+    treeLL->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeLL->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeLL->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeLL->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
+    treeLL->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeLL->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeLL->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeLL->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");  
+    treeLL->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeLL->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeLL->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeLL->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+
+    treeTT->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeTT->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeTT->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeTT->Branch("W1Spin",&W1Spin,"W1Spin/D");
+    treeTT->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeTT->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeTT->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeTT->Branch("W2Spin",&W2Spin,"W2Spin/D");
+    treeTT->Branch("lep1Pt",&lep1Pt,"lep1Pt/D");  treeTT->Branch("lep1Eta",&lep1Eta,"lep1Eta/D");  treeTT->Branch("lep1Phi",&lep1Phi,"lep1Phi/D");  treeTT->Branch("lep1Spin",&lep1Spin,"lep1Spin/D");
+    treeTT->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeTT->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeTT->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeTT->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
+    treeTT->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeTT->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeTT->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeTT->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");
+    treeTT->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeTT->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeTT->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeTT->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+
+    treeTL->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeTL->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeTL->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeTL->Branch("W1Spin",&W1Spin,"W1Spin/D");
+    treeTL->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeTL->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeTL->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeTL->Branch("W2Spin",&W2Spin,"W2Spin/D");
+    treeTL->Branch("lep1Pt",&lep1Pt,"lep1Pt/D");  treeTL->Branch("lep1Eta",&lep1Eta,"lep1Eta/D");  treeTL->Branch("lep1Phi",&lep1Phi,"lep1Phi/D");  treeTL->Branch("lep1Spin",&lep1Spin,"lep1Spin/D");
+    treeTL->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeTL->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeTL->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeTL->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
+    treeTL->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeTL->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeTL->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeTL->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");
+    treeTL->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeTL->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeTL->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeTL->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+
+    treeTotal->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeTotal->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeTotal->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeTotal->Branch("W1Spin",&W1Spin,"W1Spin/D");
+    treeTotal->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeTotal->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeTotal->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeTotal->Branch("W2Spin",&W2Spin,"W2Spin/D");
+    treeTotal->Branch("lep1Pt",&lep1Pt,"lep1Pt/D");  treeTotal->Branch("lep1Eta",&lep1Eta,"lep1Eta/D");  treeTotal->Branch("lep1Phi",&lep1Phi,"lep1Phi/D");  treeTotal->Branch("lep1Spin",&lep1Spin,"lep1Spin/D");
+    treeTotal->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeTotal->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeTotal->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeTotal->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
+    treeTotal->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeTotal->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeTotal->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeTotal->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");
+    treeTotal->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeTotal->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeTotal->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeTotal->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+
+    for(int j=0; j<=numberOfEntriesLL-1; j++)
+    { 
+        if(j%50000==0) cout<<"for LL now looping "<<j<<"th event"<<endl;
+        treeReaderLL->ReadEntry(j);
+        TRootLHEFParticle *particleW1=(TRootLHEFParticle*) branchParticleLL->At(2);
+        TRootLHEFParticle *particleW2=(TRootLHEFParticle*) branchParticleLL->At(5);
+        TRootLHEFParticle *particlelep1=(TRootLHEFParticle*) branchParticleLL->At(3);
+        TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleLL->At(4);
+        TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleLL->At(6);
+        TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleLL->At(7);
+        W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
+        W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
+        lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
+        Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
+        lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
+        Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        treeLL->Fill();
+    }
+    for(int j=0; j<=numberOfEntriesTT-1; j++)
+    {
+        if(j%50000==0) cout<<"for TT now looping "<<j<<"th event"<<endl;
+        treeReaderTT->ReadEntry(j);
+        TRootLHEFParticle *particleW1=(TRootLHEFParticle*) branchParticleTT->At(2);
+        TRootLHEFParticle *particleW2=(TRootLHEFParticle*) branchParticleTT->At(5);
+        TRootLHEFParticle *particlelep1=(TRootLHEFParticle*) branchParticleTT->At(3);
+        TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleTT->At(4);
+        TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleTT->At(6);
+        TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleTT->At(7);
+        W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
+        W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
+        lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
+        Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
+        lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
+        Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        treeTT->Fill();
+    }
+    for(int j=0; j<=numberOfEntriesTL-1; j++)
+    {
+        if(j%50000==0) cout<<"for TL now looping "<<j<<"th event"<<endl;
+        treeReaderTL->ReadEntry(j);
+        TRootLHEFParticle *particleW1=(TRootLHEFParticle*) branchParticleTL->At(2);
+        TRootLHEFParticle *particleW2=(TRootLHEFParticle*) branchParticleTL->At(5);
+        TRootLHEFParticle *particlelep1=(TRootLHEFParticle*) branchParticleTL->At(3);
+        TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleTL->At(4);
+        TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleTL->At(6);
+        TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleTL->At(7);
+        W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
+        W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
+        lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
+        Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
+        lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
+        Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        treeTL->Fill();
+    }
+    for(int j=0; j<=numberOfEntriesTotal-1; j++)
+    {
+        if(j%50000==0) cout<<"for Total now looping "<<j<<"th event"<<endl;
+        treeReaderTotal->ReadEntry(j);
+        TRootLHEFParticle *particleW1=(TRootLHEFParticle*) branchParticleTotal->At(2);
+        TRootLHEFParticle *particleW2=(TRootLHEFParticle*) branchParticleTotal->At(5);
+        TRootLHEFParticle *particlelep1=(TRootLHEFParticle*) branchParticleTotal->At(3);
+        TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleTotal->At(4);
+        TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleTotal->At(6);
+        TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleTotal->At(7);
+        W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
+        W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
+        lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
+        Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
+        lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
+        Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        treeTotal->Fill();
+    }
+
+
+
+    
+    treeLL->Write();
+    treeTT->Write();
+    treeTL->Write();
+    treeTotal->Write();
+    delete fout;
+}
+
+
