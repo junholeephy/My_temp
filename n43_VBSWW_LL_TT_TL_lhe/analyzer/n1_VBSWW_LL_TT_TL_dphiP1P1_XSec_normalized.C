@@ -92,5 +92,5 @@ void n1_VBSWW_LL_TT_TL_dphiP1P1_XSec_normalized()
 
     c1->Modified();
     c1->Update();
-    c1->Print("plot1_dphiP1P2_XSec_normalized.png");
+    c1->Print("plot1_dphiP1P2_XSec_normalized.pdf");
 }

@@ -92,5 +92,5 @@ void n2_VBSWW_LL_TT_TL_dphiP1P1_Entry_nomalized()
 
     c1->Modified();
     c1->Update();
-    c1->Print("plot2_dphiP1P2_Entry_normalized.png");
+    c1->Print("plot2_dphiP1P2_Entry_normalized.pdf");
 }
