@@ -15,7 +15,7 @@ void VBSWW_test_TL()
     TTree *treeE  = new TTree("treeE","treeE");
 
     TChain chain("LHEF");
-    chain.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww_TL/Events/run_02/unweighted_events.root");
+    chain.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/TL/unweighted_events.root");
 //    chain.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/Events/run_01/10M.root");
 //    chain.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/Events/run_02_0/run020.root");
 //    chain.Add("/Users/leejunho/Desktop/MG5_aMC_v2_6_1/bin/VBSww/Events/run_02_1/run021.root");
