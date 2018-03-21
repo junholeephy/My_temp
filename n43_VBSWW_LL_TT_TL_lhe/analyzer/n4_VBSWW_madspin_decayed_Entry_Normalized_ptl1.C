@@ -16,19 +16,16 @@ void n4_VBSWW_madspin_decayed_Entry_Normalized_ptl1()
     Double_t lep1Pt;
     Double_t lep2Pt;
     Double_t lepPt;
+    Double_t P1Pt, P2Pt = -10;
     
-    treell->SetBranchAddress("lep1Pt",&lep1Pt);
-    treell->SetBranchAddress("lep2Pt",&lep2Pt);
-    treett->SetBranchAddress("lep1Pt",&lep1Pt);
-    treett->SetBranchAddress("lep2Pt",&lep2Pt);
-    treetl->SetBranchAddress("lep1Pt",&lep1Pt);
-    treetl->SetBranchAddress("lep2Pt",&lep2Pt);
-    treetotal->SetBranchAddress("lep1Pt",&lep1Pt);
-    treetotal->SetBranchAddress("lep2Pt",&lep2Pt);    
+    treell->SetBranchAddress("lep1Pt",&lep1Pt); treell->SetBranchAddress("lep2Pt",&lep2Pt); treell->SetBranchAddress("P1Pt",&P1Pt); treell->SetBranchAddress("P2Pt",&P2Pt);
+    treett->SetBranchAddress("lep1Pt",&lep1Pt); treett->SetBranchAddress("lep2Pt",&lep2Pt); treett->SetBranchAddress("P1Pt",&P1Pt); treett->SetBranchAddress("P2Pt",&P2Pt);
+    treetl->SetBranchAddress("lep1Pt",&lep1Pt); treetl->SetBranchAddress("lep2Pt",&lep2Pt); treetl->SetBranchAddress("P1Pt",&P1Pt); treetl->SetBranchAddress("P2Pt",&P2Pt);
+    treetotal->SetBranchAddress("lep1Pt",&lep1Pt); treetotal->SetBranchAddress("lep2Pt",&lep2Pt); treetotal->SetBranchAddress("P1Pt",&P1Pt); treetotal->SetBranchAddress("P2Pt",&P2Pt);
 
 
     TH1F *hLLTTTL = new TH1F("hLLTTTL","Proportion of VBS WW, Normalized in Xsec",25,0,400);  hLLTTTL->SetLineColor(kBlue);
-    TH1F *hLL = new TH1F("hLL","hLL",25,0,400);  hLL->SetLineColor(kRed);
+    TH1F *hLL = new TH1F("hLL","VBS SS WW, Normalized with Entry number ",25,0,400);  hLL->SetLineColor(kRed);
     TH1F *hTT = new TH1F("hTT","hTT",25,0,400);  hTT->SetLineColor(kGreen);
     TH1F *hTL = new TH1F("hTL","hTL",25,0,400);  hTL->SetLineColor(kBlack);
     
@@ -39,28 +36,32 @@ void n4_VBSWW_madspin_decayed_Entry_Normalized_ptl1()
         treetotal->GetEntry(i);
         lepPt = lep1Pt; 
         if(lepPt < lep2Pt) lepPt = lep2Pt;
-        hLLTTTL->Fill(lepPt);
+        if(lepPt>20 && P1Pt>30 && P2Pt>30) hLLTTTL->Fill(lepPt);
+        else continue;
     }
     for(Int_t i=0; i<treell->GetEntries(); i++)
     {
         treell->GetEntry(i);
         lepPt = lep1Pt; 
         if(lepPt < lep2Pt) lepPt = lep2Pt;
-        hLL->Fill(lepPt);
+        if(lepPt>20 && P1Pt>30 && P2Pt>30) hLL->Fill(lepPt);
+        else continue;
     }
     for(Int_t i=0; i<treett->GetEntries(); i++)
     {
         treett->GetEntry(i);
         lepPt = lep1Pt;
         if(lepPt < lep2Pt) lepPt = lep2Pt;
-        hTT->Fill(lepPt);
+        if(lepPt>20 && P1Pt>30 && P2Pt>30) hTT->Fill(lepPt);
+        else continue;
     }
     for(Int_t i=0; i<treetl->GetEntries(); i++)
     {
         treetl->GetEntry(i);
         lepPt = lep1Pt;
         if(lepPt < lep2Pt) lepPt = lep2Pt;
-        hTL->Fill(lepPt);
+        if(lepPt>20 && P1Pt>30 && P2Pt>30) hTL->Fill(lepPt);
+        else continue;
     }
     
 //    Double_t XSec_lltttl,XSec_tt, XSec_tl, XSec_ll = 0;

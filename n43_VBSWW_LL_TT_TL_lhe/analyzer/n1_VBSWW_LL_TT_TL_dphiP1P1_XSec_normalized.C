@@ -16,12 +16,12 @@ void n1_VBSWW_LL_TT_TL_dphiP1P1_XSec_normalized()
     TTree *tTT = (TTree*)fTT->Get("treeE");
     TTree *tTL = (TTree*)fTL->Get("treeE");
 
-    Double_t P1P2dphi=-10;
+    Double_t P1P2dphi, P1Pt, P2Pt = -10;
     
-    tLLTTTL->SetBranchAddress("P1P2dphi",&P1P2dphi);
-    tLL->SetBranchAddress("P1P2dphi",&P1P2dphi);
-    tTT->SetBranchAddress("P1P2dphi",&P1P2dphi);
-    tTL->SetBranchAddress("P1P2dphi",&P1P2dphi);
+    tLLTTTL->SetBranchAddress("P1P2dphi",&P1P2dphi); tLLTTTL->SetBranchAddress("P1Pt",&P1Pt); tLLTTTL->SetBranchAddress("P2Pt",&P2Pt);
+    tLL->SetBranchAddress("P1P2dphi",&P1P2dphi); tLL->SetBranchAddress("P1Pt",&P1Pt); tLL->SetBranchAddress("P2Pt",&P2Pt);
+    tTT->SetBranchAddress("P1P2dphi",&P1P2dphi); tTT->SetBranchAddress("P1Pt",&P1Pt); tTT->SetBranchAddress("P2Pt",&P2Pt);
+    tTL->SetBranchAddress("P1P2dphi",&P1P2dphi); tTL->SetBranchAddress("P1Pt",&P1Pt); tTL->SetBranchAddress("P2Pt",&P2Pt);
 
     THStack *hs = new THStack("hs","Stacked 1D histogram");
     TH1F *hLLTTTL = new TH1F("hLLTTTL","Proportion of VBS WW, Normalized in Xsec",10,0.,3.1415926);  hLLTTTL->SetLineColor(kBlue);
@@ -34,22 +34,26 @@ void n1_VBSWW_LL_TT_TL_dphiP1P1_XSec_normalized()
     for(Int_t i=0; i<tLLTTTL->GetEntries(); i++)
     {
         tLLTTTL->GetEntry(i);
-        hLLTTTL->Fill(P1P2dphi);
+        if(P1Pt>30 && P2Pt>30)  hLLTTTL->Fill(P1P2dphi);
+        else continue;
     }
     for(Int_t i=0; i<tLL->GetEntries(); i++)
     {
         tLL->GetEntry(i);
-        hLL->Fill(P1P2dphi);
+        if(P1Pt>30 && P2Pt>30)  hLL->Fill(P1P2dphi);
+        else continue;
     }
     for(Int_t i=0; i<tTT->GetEntries(); i++)
     {
         tTT->GetEntry(i);
-        hTT->Fill(P1P2dphi);
+        if(P1Pt>30 && P2Pt>30)  hTT->Fill(P1P2dphi);
+        else continue;
     }
     for(Int_t i=0; i<tTL->GetEntries(); i++)
     {
         tTL->GetEntry(i);
-        hTL->Fill(P1P2dphi);
+        if(P1Pt>30 && P2Pt>30)  hTL->Fill(P1P2dphi);
+        else continue;
     }
     
     Double_t XSec_lltttl,XSec_tt, XSec_tl, XSec_ll = 0;

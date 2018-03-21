@@ -54,6 +54,8 @@ void VBSWW_Madspin_decayed()
     Double_t Nu1Pt, Nu1Eta, Nu1Phi, Nu1Spin = 0;
     Double_t lep2Pt, lep2Eta, lep2Phi, lep2Spin = 0;
     Double_t Nu2Pt, Nu2Eta, Nu2Phi, Nu2Spin = 0;
+    Double_t P1Pt, P1Eta, P1Phi, P1Spin = 0;
+    Double_t P2Pt, P2Eta, P2Phi, P2Spin = 0;
 
     treeLL->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeLL->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeLL->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeLL->Branch("W1Spin",&W1Spin,"W1Spin/D");  
     treeLL->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeLL->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeLL->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeLL->Branch("W2Spin",&W2Spin,"W2Spin/D");  
@@ -61,6 +63,8 @@ void VBSWW_Madspin_decayed()
     treeLL->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeLL->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeLL->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeLL->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
     treeLL->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeLL->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeLL->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeLL->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");  
     treeLL->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeLL->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeLL->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeLL->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+    treeLL->Branch("P1Pt",&P1Pt,"P1Pt/D");  treeLL->Branch("P1Eta",&P1Eta,"P1Eta/D");  treeLL->Branch("P1Phi",&P1Phi,"P1Phi/D");  treeLL->Branch("P1Spin",&P1Spin,"P1Spin/D");  
+    treeLL->Branch("P2Pt",&P2Pt,"P2Pt/D");  treeLL->Branch("P2Eta",&P2Eta,"P2Eta/D");  treeLL->Branch("P2Phi",&P2Phi,"P2Phi/D");  treeLL->Branch("P2Spin",&P2Spin,"P2Spin/D");
 
     treeTT->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeTT->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeTT->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeTT->Branch("W1Spin",&W1Spin,"W1Spin/D");
     treeTT->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeTT->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeTT->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeTT->Branch("W2Spin",&W2Spin,"W2Spin/D");
@@ -68,6 +72,8 @@ void VBSWW_Madspin_decayed()
     treeTT->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeTT->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeTT->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeTT->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
     treeTT->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeTT->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeTT->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeTT->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");
     treeTT->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeTT->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeTT->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeTT->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+    treeTT->Branch("P1Pt",&P1Pt,"P1Pt/D");  treeTT->Branch("P1Eta",&P1Eta,"P1Eta/D");  treeTT->Branch("P1Phi",&P1Phi,"P1Phi/D");  treeTT->Branch("P1Spin",&P1Spin,"P1Spin/D");
+    treeTT->Branch("P2Pt",&P2Pt,"P2Pt/D");  treeTT->Branch("P2Eta",&P2Eta,"P2Eta/D");  treeTT->Branch("P2Phi",&P2Phi,"P2Phi/D");  treeTT->Branch("P2Spin",&P2Spin,"P2Spin/D");
 
     treeTL->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeTL->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeTL->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeTL->Branch("W1Spin",&W1Spin,"W1Spin/D");
     treeTL->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeTL->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeTL->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeTL->Branch("W2Spin",&W2Spin,"W2Spin/D");
@@ -75,6 +81,8 @@ void VBSWW_Madspin_decayed()
     treeTL->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeTL->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeTL->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeTL->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
     treeTL->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeTL->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeTL->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeTL->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");
     treeTL->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeTL->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeTL->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeTL->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+    treeTL->Branch("P1Pt",&P1Pt,"P1Pt/D");  treeTL->Branch("P1Eta",&P1Eta,"P1Eta/D");  treeTL->Branch("P1Phi",&P1Phi,"P1Phi/D");  treeTL->Branch("P1Spin",&P1Spin,"P1Spin/D");
+    treeTL->Branch("P2Pt",&P2Pt,"P2Pt/D");  treeTL->Branch("P2Eta",&P2Eta,"P2Eta/D");  treeTL->Branch("P2Phi",&P2Phi,"P2Phi/D");  treeTL->Branch("P2Spin",&P2Spin,"P2Spin/D");
 
     treeTotal->Branch("W1Pt",&W1Pt,"W1Pt/D");  treeTotal->Branch("W1Eta",&W1Eta,"W1Eta/D");  treeTotal->Branch("W1Phi",&W1Phi,"W1Phi/D");  treeTotal->Branch("W1Spin",&W1Spin,"W1Spin/D");
     treeTotal->Branch("W2Pt",&W2Pt,"W2Pt/D");  treeTotal->Branch("W2Eta",&W2Eta,"W2Eta/D");  treeTotal->Branch("W2Phi",&W2Phi,"W2Phi/D");  treeTotal->Branch("W2Spin",&W2Spin,"W2Spin/D");
@@ -82,6 +90,11 @@ void VBSWW_Madspin_decayed()
     treeTotal->Branch("Nu1Pt",&Nu1Pt,"Nu1Pt/D");  treeTotal->Branch("Nu1Eta",&Nu1Eta,"Nu1Eta/D");  treeTotal->Branch("Nu1Phi",&Nu1Phi,"Nu1Phi/D");  treeTotal->Branch("Nu1Spin",&Nu1Spin,"Nu1Spin/D");
     treeTotal->Branch("lep2Pt",&lep2Pt,"lep2Pt/D");  treeTotal->Branch("lep2Eta",&lep2Eta,"lep2Eta/D");  treeTotal->Branch("lep2Phi",&lep2Phi,"lep2Phi/D");  treeTotal->Branch("lep2Spin",&lep2Spin,"lep2Spin/D");
     treeTotal->Branch("Nu2Pt",&Nu1Pt,"Nu2Pt/D");  treeTotal->Branch("Nu2Eta",&Nu2Eta,"Nu2Eta/D");  treeTotal->Branch("Nu2Phi",&Nu2Phi,"Nu2Phi/D");  treeTotal->Branch("Nu2Spin",&Nu2Spin,"Nu2Spin/D");
+    treeTotal->Branch("P1Pt",&P1Pt,"P1Pt/D");  treeTotal->Branch("P1Eta",&P1Eta,"P1Eta/D");  treeTotal->Branch("P1Phi",&P1Phi,"P1Phi/D");  treeTotal->Branch("P1Spin",&P1Spin,"P1Spin/D");
+    treeTotal->Branch("P2Pt",&P2Pt,"P2Pt/D");  treeTotal->Branch("P2Eta",&P2Eta,"P2Eta/D");  treeTotal->Branch("P2Phi",&P2Phi,"P2Phi/D");  treeTotal->Branch("P2Spin",&P2Spin,"P2Spin/D");
+
+
+
 
     for(int j=0; j<=numberOfEntriesLL-1; j++)
     { 
@@ -93,12 +106,18 @@ void VBSWW_Madspin_decayed()
         TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleLL->At(4);
         TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleLL->At(6);
         TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleLL->At(7);
+        TRootLHEFParticle *particleP1=(TRootLHEFParticle*) branchParticleLL->At(8);
+        TRootLHEFParticle *particleP2=(TRootLHEFParticle*) branchParticleLL->At(9);
+
         W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
         W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
         lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
         Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
         lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
         Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        P1Pt = particleP1->PT;  P1Eta = particleP1->Eta;  P1Phi = particleP1->Phi;  P1Spin = particleP1->Spin;
+        P2Pt = particleP2->PT;  P2Eta = particleP2->Eta;  P2Phi = particleP2->Phi;  P2Spin = particleP2->Spin;
+
         treeLL->Fill();
     }
     for(int j=0; j<=numberOfEntriesTT-1; j++)
@@ -111,12 +130,18 @@ void VBSWW_Madspin_decayed()
         TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleTT->At(4);
         TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleTT->At(6);
         TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleTT->At(7);
+        TRootLHEFParticle *particleP1=(TRootLHEFParticle*) branchParticleTT->At(8);
+        TRootLHEFParticle *particleP2=(TRootLHEFParticle*) branchParticleTT->At(9);
+
         W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
         W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
         lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
         Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
         lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
         Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        P1Pt = particleP1->PT;  P1Eta = particleP1->Eta;  P1Phi = particleP1->Phi;  P1Spin = particleP1->Spin;
+        P2Pt = particleP2->PT;  P2Eta = particleP2->Eta;  P2Phi = particleP2->Phi;  P2Spin = particleP2->Spin;
+
         treeTT->Fill();
     }
     for(int j=0; j<=numberOfEntriesTL-1; j++)
@@ -129,12 +154,18 @@ void VBSWW_Madspin_decayed()
         TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleTL->At(4);
         TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleTL->At(6);
         TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleTL->At(7);
+        TRootLHEFParticle *particleP1=(TRootLHEFParticle*) branchParticleTL->At(8);
+        TRootLHEFParticle *particleP2=(TRootLHEFParticle*) branchParticleTL->At(9);
+
         W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
         W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
         lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
         Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
         lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
         Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        P1Pt = particleP1->PT;  P1Eta = particleP1->Eta;  P1Phi = particleP1->Phi;  P1Spin = particleP1->Spin;
+        P2Pt = particleP2->PT;  P2Eta = particleP2->Eta;  P2Phi = particleP2->Phi;  P2Spin = particleP2->Spin;
+
         treeTL->Fill();
     }
     for(int j=0; j<=numberOfEntriesTotal-1; j++)
@@ -147,12 +178,18 @@ void VBSWW_Madspin_decayed()
         TRootLHEFParticle *particleNu1=(TRootLHEFParticle*) branchParticleTotal->At(4);
         TRootLHEFParticle *particlelep2=(TRootLHEFParticle*) branchParticleTotal->At(6);
         TRootLHEFParticle *particleNu2=(TRootLHEFParticle*) branchParticleTotal->At(7);
+        TRootLHEFParticle *particleP1=(TRootLHEFParticle*) branchParticleTotal->At(8);
+        TRootLHEFParticle *particleP2=(TRootLHEFParticle*) branchParticleTotal->At(9);
+
         W1Pt = particleW1->PT;  W1Eta = particleW1->Eta;  W1Phi = particleW1->Phi;  W1Spin = particleW1->Spin;
         W2Pt = particleW2->PT;  W2Eta = particleW2->Eta;  W2Phi = particleW2->Phi;  W2Spin = particleW2->Spin;
         lep1Pt = particlelep1->PT; lep1Eta = particlelep1->Eta; lep1Phi = particlelep1->Phi; lep1Spin = particlelep1->Spin;
         Nu1Pt = particleNu1->PT; Nu1Eta = particleNu1->Eta; Nu1Phi = particleNu1->Phi; Nu1Spin = particleNu1->Spin;
         lep2Pt = particlelep2->PT; lep2Eta = particlelep2->Eta; lep2Phi = particlelep2->Phi; lep2Spin = particlelep2->Spin;
         Nu2Pt = particleNu2->PT; Nu2Eta = particleNu2->Eta; Nu2Phi = particleNu2->Phi; Nu2Spin = particleNu2->Spin;
+        P1Pt = particleP1->PT;  P1Eta = particleP1->Eta;  P1Phi = particleP1->Phi;  P1Spin = particleP1->Spin;
+        P2Pt = particleP2->PT;  P2Eta = particleP2->Eta;  P2Phi = particleP2->Phi;  P2Spin = particleP2->Spin;
+
         treeTotal->Fill();
     }
 
