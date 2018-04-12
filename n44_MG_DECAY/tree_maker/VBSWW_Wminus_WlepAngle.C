@@ -8,7 +8,7 @@
 #include <vector>
 #include "TH1.h"
 
-void VBSWW_Wplus_WlepAngle()
+void VBSWW_Wminus_WlepAngle()
 {
     TTree *treeLL = new TTree("treeLL","treeLL");
     TTree *treeTpTp = new TTree("treeTpTp","treeTpTp");
@@ -18,7 +18,7 @@ void VBSWW_Wplus_WlepAngle()
     TTree *treeTmL = new TTree("treeTmL","treeTmL");
 
     TChain chain("LHEF");
-    chain.Add("/Users/leejunho/Desktop/MadGraph5_v1_5_14/bin/VBSwpwp/Events/run_02_4/VBSwpwp_DECAY.root");
+    chain.Add("/Users/leejunho/Desktop/MadGraph5_v1_5_14/bin/VBSwmwm/Events/run_02_4/VBSwmwm_DECAY.root");
 
     ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
     Long64_t numberOfEntries = treeReader->GetEntries();
@@ -184,8 +184,7 @@ void VBSWW_Wplus_WlepAngle()
     cout<<"TmTm ENTRY :"<<treeTmTm->GetEntries()<<endl;
     cout<<"TpTm ENTRY :"<<treeTpTm->GetEntries()<<endl;
    
-    TFile *fout = new TFile("output_VBSWW_Wplus_WlepAngle.root","RECREATE"); 
-
+    TFile *fout = new TFile("output_VBSWW_Wminus_WlepAngle.root","RECREATE"); 
     treeLL->Write();
     treeTpTp->Write();
     treeTmTm->Write();

@@ -8,10 +8,10 @@
 #include <vector>
 #include "TH1.h"
 
-void VBSWW_Wplus()
+void VBSWW_Wminus()
 {
     TChain chain("LHEF");
-    chain.Add("/Users/leejunho/Desktop/MadGraph5_v1_5_14/bin/VBSwpwp/Events/run_01/VBSwpwp_DECAY.root");
+    chain.Add("/Users/leejunho/Desktop/MadGraph5_v1_5_14/bin/VBSwmwm/Events/run_02_0/VBSwmwm_DECAY.root");
     ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
     Long64_t numberOfEntries = treeReader->GetEntries();
     cout<<"Total Number of Entry Events : "<<numberOfEntries<<endl;
@@ -114,7 +114,7 @@ void VBSWW_Wplus()
 
 //    cout<<ii<<endl;
    
-    TFile *fout = new TFile("output_VBSWW_Wplus.root","RECREATE"); 
+    TFile *fout = new TFile("output_VBSWW_Wminus.root","RECREATE"); 
     treeLL->Write();
     treeTT->Write();
     treeTL->Write();
