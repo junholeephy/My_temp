@@ -24,6 +24,7 @@ void test_Draw_2D_Fit()
         HIGH = 0.4+HIGH;
         LOW = 0.4+LOW;
     }
+    cout<<"end!!"<<endl;
     LOW = -1.0; HIGH = -0.6;
     
     for(int j=0; j<5; j++)
@@ -39,7 +40,7 @@ void test_Draw_2D_Fit()
         HIGH = 0.4+HIGH;
         LOW = 0.4+LOW;
     }
-
+    cout<<"end!!"<<endl;
     LOW = -1.0; HIGH = -0.6;
 
     for(int j=0; j<5; j++)
@@ -55,7 +56,7 @@ void test_Draw_2D_Fit()
         HIGH = 0.4+HIGH;
         LOW = 0.4+LOW;
     }
-
+    cout<<"end!!"<<endl;
 
 }
 

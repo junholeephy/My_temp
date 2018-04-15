@@ -22,6 +22,8 @@ TwoD_Fit_Make_Fraction::TwoD_Fit_Make_Fraction()
 {
 }
 
+
+
 vector<double> TwoD_Fit_Make_Fraction::V_Events_num_LL(string *STR, double low, double high)
 {
     vector<double> LLNums;
@@ -52,6 +54,9 @@ vector<double> TwoD_Fit_Make_Fraction::V_Events_num_LL(string *STR, double low, 
     f->Close();
     return LLNums;
 }
+
+
+
 vector<double> TwoD_Fit_Make_Fraction::V_Events_num_TL(string *STR, double low, double high)
 {   
     vector<double> TLNums;
@@ -101,6 +106,7 @@ vector<double> TwoD_Fit_Make_Fraction::V_Events_num_TL(string *STR, double low, 
     f->Close();
     return TLNums;
 }
+
 
 vector<double> TwoD_Fit_Make_Fraction::V_Events_num_TT(string *STR, double low, double high)
 {   
