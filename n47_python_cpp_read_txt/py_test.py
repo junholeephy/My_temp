@@ -7,7 +7,8 @@ test_root = "root -l -q test2.C"
 os.system(test_root)
 
 Input_txt = "/Users/leejunho/Desktop/git/python3Env/group_study/project_pre/data_txt/BEIJING_Aqi/Aqi_Beijing_Holi.txt"
-test_root = "root -l -q n4_ITEM_NUM_of_ROW.C\("+"'"+'"'+Input_txt+'"'+"'"+"\)"
+#test_root = "root -l -q n4_ITEM_NUM_of_ROW.C\("+"'"+'"'+Input_txt+'"'+"'"+"\)"
+test_root = "root -l -q c6_test.C\("+"'"+'"'+Input_txt+'"'+"'"+"\)"
 #os.system(test_root)
 T_root = os.popen(test_root)
 Run_root = T_root.readlines()
