@@ -15,6 +15,13 @@ Run_root = T_root.readlines()
 #print(Run_root)
 T_root.close()
 
+Input_root = "/Users/leejunho/Desktop/git/python3Env/group_study/project_pre/data_txt/BEIJING_Aqi/Aqi_Beijing_day_re_tree_cut_hist2D.root"
+twoD_plot_save = "root -l -q /Users/leejunho/Desktop/git/python3Env/group_study/fruit_team/ROOT/Project/functions/2Dplots_Saver/TwoD_Plot_Saver_default.C\("+"'"+'"'+Input_root+'"'+"'"+"\)"
+os.system(twoD_plot_save)
+os.system("mkdir 2D_defalut")
+os.system("mv *defalut_2D.pdf 2D_defalut")
+
+
 #os.system("ls *.C")
 tt = os.popen("ls")
 #print(tt)
