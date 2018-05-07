@@ -19,7 +19,8 @@ void Delphes_test()
 {
     cout<<"test"<<endl;
     TChain chain("Delphes");
-    chain.Add("small_PairWW_delphes.root");
+//    chain.Add("small_PairWW_delphes.root");
+    chain.Add("../../../delphes_output/PairWW_delphes.root");
 
     ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
     Long64_t N_Entries = treeReader->GetEntries();
@@ -61,6 +62,7 @@ void Delphes_test()
 
 
     TFile *Of = new TFile("Outfile_delphes.root","RECREATE");
+    Int_t selected_Events = 0;
     for(Long64_t entry=0; entry<N_Entries; entry++)
     {
         treeReader->ReadEntry(entry);
@@ -148,9 +150,10 @@ void Delphes_test()
                 else continue;
             }
             else continue;
+            selected_Events++;
         }
     }
-
+    cout<<"Selected Events : "<<selected_Events<<endl;
     Of->Close();
 }
 
